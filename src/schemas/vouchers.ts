@@ -194,10 +194,10 @@ export const AccountActivitySchema = z.object({
   response_format: z.nativeEnum(ResponseFormat)
     .default(ResponseFormat.MARKDOWN)
     .describe("Output format: 'markdown' or 'json'")
-}).strict().refine(
-  (data) => data.account_number !== undefined || data.account_numbers !== undefined || data.account_range !== undefined,
-  { message: "Must specify at least one of: account_number, account_numbers, or account_range" }
-);
+}).strict();
+// No top-level .refine(): it wraps the schema in ZodEffects, which the MCP SDK
+// publishes as an empty input schema. The "at least one account filter" check
+// lives in the tool handler instead.
 
 export type AccountActivityInput = z.infer<typeof AccountActivitySchema>;
 

@@ -488,6 +488,10 @@ Examples:
     },
     async (params: AccountActivityInput) => {
       try {
+        if (params.account_number === undefined && params.account_numbers === undefined && params.account_range === undefined) {
+          throw new Error("Must specify at least one of: account_number, account_numbers, or account_range");
+        }
+
         // Build account filter set
         const accountFilter = new Set<number>();
         if (params.account_number !== undefined) {
