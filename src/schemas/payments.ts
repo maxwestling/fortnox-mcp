@@ -99,7 +99,7 @@ export const CreateInvoicePaymentSchema = z
       .min(0)
       .optional()
       .describe("Exchange rate if paying in foreign currency"),
-    amount_currency: z
+    amount_currency: z.coerce
       .number()
       .min(0)
       .optional()
@@ -239,7 +239,7 @@ export const CreateSupplierInvoicePaymentSchema = z
       .min(0)
       .optional()
       .describe("Exchange rate if paying in foreign currency"),
-    amount_currency: z
+    amount_currency: z.coerce
       .number()
       .min(0)
       .optional()
