@@ -99,6 +99,11 @@ export const CreateInvoicePaymentSchema = z
       .min(0)
       .optional()
       .describe("Exchange rate if paying in foreign currency"),
+    amount_currency: z
+      .number()
+      .min(0)
+      .optional()
+      .describe("Payment amount in the invoice currency (required by Fortnox for non-SEK invoices; amount is then in SEK)"),
     response_format: z
       .nativeEnum(ResponseFormat)
       .default(ResponseFormat.MARKDOWN)
@@ -229,16 +234,16 @@ export const CreateSupplierInvoicePaymentSchema = z
       .max(10)
       .optional()
       .describe("Payment method code (e.g., 'BG', 'PG', 'AG')"),
-    currency: z
-      .string()
-      .length(3)
-      .optional()
-      .describe("Currency code if not SEK (e.g., 'EUR', 'USD')"),
     currency_rate: z
       .number()
       .min(0)
       .optional()
       .describe("Exchange rate if paying in foreign currency"),
+    amount_currency: z
+      .number()
+      .min(0)
+      .optional()
+      .describe("Payment amount in the invoice currency (required by Fortnox for non-SEK invoices; amount is then in SEK)"),
     response_format: z
       .nativeEnum(ResponseFormat)
       .default(ResponseFormat.MARKDOWN)

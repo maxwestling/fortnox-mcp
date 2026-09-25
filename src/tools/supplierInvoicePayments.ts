@@ -220,8 +220,8 @@ Args:
   - payment_date (string): Payment date YYYY-MM-DD (required)
   - amount (number): Payment amount (defaults to full invoice amount)
   - mode_of_payment (string): Payment method code (e.g., 'BG', 'PG', 'AG')
-  - currency (string): Currency code if not SEK (e.g., 'EUR')
   - currency_rate (number): Exchange rate for foreign currency payments
+  - amount_currency (number): Amount in the invoice currency (required for non-SEK invoices; amount is then in SEK)
   - response_format ('markdown' | 'json'): Output format
 
 Returns:
@@ -244,10 +244,10 @@ Returns:
         if (params.amount !== undefined) paymentData.Amount = params.amount;
         if (params.mode_of_payment !== undefined)
           paymentData.ModeOfPayment = params.mode_of_payment;
-        if (params.currency !== undefined)
-          paymentData.Currency = params.currency;
         if (params.currency_rate !== undefined)
           paymentData.CurrencyRate = params.currency_rate;
+        if (params.amount_currency !== undefined)
+          paymentData.AmountCurrency = params.amount_currency;
 
         const response = await fortnoxRequest<SupplierInvoicePaymentResponse>(
           "/3/supplierinvoicepayments",

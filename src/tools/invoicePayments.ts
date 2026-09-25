@@ -233,6 +233,7 @@ Args:
   - mode_of_payment_account (number): Account number for the payment
   - currency (string): Currency code if not SEK (e.g., 'EUR')
   - currency_rate (number): Exchange rate for foreign currency payments
+  - amount_currency (number): Amount in the invoice currency (required for non-SEK invoices)
   - response_format ('markdown' | 'json'): Output format
 
 Returns:
@@ -265,6 +266,8 @@ Example:
           paymentData.Currency = params.currency;
         if (params.currency_rate !== undefined)
           paymentData.CurrencyRate = params.currency_rate;
+        if (params.amount_currency !== undefined)
+          paymentData.AmountCurrency = params.amount_currency;
 
         const response = await fortnoxRequest<InvoicePaymentResponse>(
           "/3/invoicepayments",
