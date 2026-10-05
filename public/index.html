@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fortnox MCP Server</title>
+  <style>
+    :root { --bg: #ffffff; --fg: #1a1a1a; --muted: #5f6368; --code-bg: #f3f3f1; --border: #e2e2de; }
+    @media (prefers-color-scheme: dark) {
+      :root { --bg: #161616; --fg: #ececec; --muted: #a0a0a0; --code-bg: #242424; --border: #333; }
+    }
+    body { margin: 0; background: var(--bg); color: var(--fg); font: 16px/1.6 system-ui, -apple-system, sans-serif; }
+    main { max-width: 640px; margin: 0 auto; padding: 48px 16px; }
+    h1 { font-size: 1.6rem; margin: 0 0 4px; }
+    h2 { font-size: 1.1rem; margin-top: 2rem; }
+    p.lead { color: var(--muted); margin-top: 0; }
+    code, pre { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0.9em; background: var(--code-bg); border-radius: 6px; }
+    code { padding: 2px 6px; }
+    pre { padding: 12px 14px; overflow-x: auto; border: 1px solid var(--border); }
+    pre code { padding: 0; background: none; }
+    li { margin: 4px 0; }
+    footer { margin-top: 3rem; color: var(--muted); font-size: 0.875rem; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Fortnox MCP Server</h1>
+    <p class="lead">Connect Claude to your Fortnox account to work with customers, invoices, vouchers, and more.</p>
+
+    <h2>Server URL</h2>
+    <pre><code class="mcp-url">https://fortnox-mcp.vercel.app/mcp</code></pre>
+
+    <h2>Claude.ai or Claude Desktop</h2>
+    <ol>
+      <li>Open <strong>Settings → Connectors</strong>.</li>
+      <li>Click <strong>Add custom connector</strong>.</li>
+      <li>Paste the server URL above and save.</li>
+      <li>Click <strong>Connect</strong> and sign in to Fortnox to authorize access.</li>
+    </ol>
+
+    <h2>Claude Code</h2>
+    <pre><code>claude mcp add --transport http fortnox <span class="mcp-url">https://fortnox-mcp.vercel.app/mcp</span></code></pre>
+    <p>Then run <code>/mcp</code> in Claude Code and authenticate with Fortnox.</p>
+
+    <footer>You need a Fortnox account with permission to use integrations.</footer>
+  </main>
+  <script>
+    if (location.protocol.startsWith("http")) {
+      var url = location.origin + "/mcp";
+      document.querySelectorAll(".mcp-url").forEach(function (el) { el.textContent = url; });
+    }
+  </script>
+</body>
+</html>
